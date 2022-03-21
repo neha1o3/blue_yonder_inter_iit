@@ -28,6 +28,7 @@ A=[]
 B=[]
 C=[]
 Count=[]
+drone=[[2000,2,5,200,1],[2500,2.5,6,500,1],[3000,3,7,1000,2],[4000,3.5,8,2000,2],[5000,4,9,3000,2],[10000,5,10,5000,4]]
 for x in range(len(rows2)):
     if (rows2[x][3]=="Noflyzone" and rows2[x][0][0]=="X" and rows2[x][0][2]=="1"):
         a=[]
@@ -50,6 +51,14 @@ for x in range(len(rows2)):
         Count.append([rows2[x][1]])
     elif ("Drone" in rows2[x][3] and "C" in rows2[x][0]):
         C.append([rows2[x][1]])
+M= rows2[0][1]
+def speed(dtype, pload):
+    f=pload/drone[dtype-1][2]
+    a=[M-P[dtype-1]*f, M-Q[dtype-1]*f, M+Q[dtype-1]*f]
+    return a
+def energy(w,s,h,dtype):
+    return w(A[dtype-1]+s*B[dtype-1]+h*C[dtype-1])
+
 print(WH)    
 print(RC)
 print(P)
